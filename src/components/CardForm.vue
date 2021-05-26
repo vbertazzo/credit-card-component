@@ -49,7 +49,7 @@ import { CreditCard } from './types'
 import { identifyBrand } from './validators'
 
 export default defineComponent({
-  name: 'CreditCardForm',
+  name: 'CardForm',
   emits: ['update-card', 'flip-card'],
   setup (_, ctx) {
     const card = reactive<CreditCard>({

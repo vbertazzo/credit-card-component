@@ -73,6 +73,7 @@ import { defineComponent, computed } from 'vue'
 import CardBrand from './CardBrand.vue'
 
 export default defineComponent({
+  name: 'CardPreview',
   components: { CardBrand },
   props: {
     number: {
