@@ -7,11 +7,12 @@
       data-test="card"
     >
       <div
-        class="front card__face absolute h-full w-full p-6 rounded-xl "
+        class="front card__face absolute h-full w-full p-6 rounded-xl"
         :style="bgColor"
+        data-test="card-front"
       >
         <div class="flex items-start">
-          <CardBrand :brand="brand" :type="type" :color="textColor" />
+          <CardBrand :brand="brand" :color="textColor" />
 
           <svg
             viewBox="0 0 32 39"
@@ -38,6 +39,7 @@
       <div
         class="back card__face absolute h-full w-full p-6 rounded-xl"
         :style="bgColor"
+        data-test="card-back"
       >
         <div class="flex items-start">
           <svg
@@ -106,18 +108,12 @@ export default defineComponent({
     },
     textColor: {
       type: String,
-      default: '#FFF'
-    },
-    type: {
-      type: String as () => 'outline' | 'fill',
-      default: 'fill'
+      default: '#FFFFFF'
     }
   },
   setup (props) {
     const bgColor = computed(() => {
-      return props.type === 'fill'
-        ? `background-color: ${props.backgroundColor}`
-        : 'background-color: white'
+      return `background-color: ${props.backgroundColor}`
     })
 
     const txtColor = computed(() => {

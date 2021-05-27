@@ -140,10 +140,6 @@ export default defineComponent({
       type: String,
       required: true
     },
-    type: {
-      type: String as () => 'outline' | 'fill',
-      default: 'fill'
-    },
     color: {
       type: String,
       default: '#FFF'
@@ -154,13 +150,8 @@ export default defineComponent({
       return `fill: ${props.color}`
     })
 
-    const strokeColor = computed(() => {
-      return `stroke: ${props.color}`
-    })
-
     return {
-      fillColor,
-      strokeColor
+      fillColor
     }
   }
 })
