@@ -54,10 +54,10 @@
         </div>
         <div class="mt-40 space-y-3 text-lg">
           <p :style="txtColor" data-test="number">
-            {{ number }}
+            {{ formattedNumber }}
           </p>
           <p :style="txtColor" data-test="expiration-date">
-            {{ expirationDate }}
+            {{ formattedDate }}
           </p>
           <p :style="txtColor" data-test="verification-code">
             {{ verificationCode }}
@@ -128,10 +128,23 @@ export default defineComponent({
       return `stroke: ${props.textColor}`
     })
 
+    const formattedNumber = computed(() => {
+      return props.number
+        .replace(/\W/gi, '')
+        .replace(/(.{4})/g, '$1 ')
+        .trim()
+    })
+
+    const formattedDate = computed(() => {
+      return props.expirationDate.replace('/', ' / ')
+    })
+
     return {
       bgColor,
       txtColor,
-      svgColor
+      svgColor,
+      formattedNumber,
+      formattedDate
     }
   }
 })

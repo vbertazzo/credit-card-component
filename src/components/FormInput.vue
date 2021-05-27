@@ -1,7 +1,7 @@
 <template>
   <div class="w-48">
     <input
-      class="mt-2 border rounded"
+      class="px-4 py-1 border rounded"
       :class="error ? 'border-red-600' : ''"
       :type="type"
       :id="name"
