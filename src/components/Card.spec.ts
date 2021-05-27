@@ -1,12 +1,12 @@
 import { ComponentPublicInstance } from 'vue'
 import { mount, VueWrapper } from '@vue/test-utils'
-import CreditCardPreview from './CreditCardPreview.vue'
+import CardPreview from './CardPreview.vue'
 
-describe('CreditCardPreview', () => {
+describe('CardPreview', () => {
 	let wrapper: VueWrapper<ComponentPublicInstance>
 
 	beforeEach(() => {
-		wrapper = mount(CreditCardPreview, {
+		wrapper = mount(CardPreview, {
 			props: {
 				number: '4203 2410 2340 4932',
 				name: 'Mionel Lessi',
@@ -29,7 +29,7 @@ describe('CreditCardPreview', () => {
 	})
 
 	it('displays expiration date on card preview', () => {
-		expect(wrapper.find('[data-test="expiration-date"]').text()).toBe('09/28')
+		expect(wrapper.find('[data-test="expiration-date"]').text()).toBe('09 / 28')
 	})
 
 	it('displays verification code on card preview', () => {
