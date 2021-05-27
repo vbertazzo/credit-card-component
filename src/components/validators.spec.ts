@@ -2,11 +2,11 @@ import { identifyBrand, isCardValid, isExpirationDateValid, isNameValid, isVerif
 
 describe('Card number validation', () => {
 	it('returns true when card is valid', () => {
-		expect(isCardValid('4012888888881881')).toBe(true)
+		expect(isCardValid('4012888888881881').valid).toBe(true)
 	})
 
 	it('returns false when card is invalid', () => {
-		expect(isCardValid('4242424242424241')).toBe(false)
+		expect(isCardValid('4242424242424241').valid).toBe(false)
 	})
 
 	it('returns only the card digits', () => {
@@ -56,7 +56,7 @@ describe('Verification code validation', () => {
 			number: '4242424242424242',
 			verificationCode: '123'
 		}
-		expect(isVerificationCodeValid(number, verificationCode)).toBe(true)
+		expect(isVerificationCodeValid(number, verificationCode).valid).toBe(true)
 	})
 
 	it('returns false when verification code is invalid', () => {
@@ -64,32 +64,32 @@ describe('Verification code validation', () => {
 			number: '4242424242424242',
 			verificationCode: '4803'
 		}
-		expect(isVerificationCodeValid(number, verificationCode)).toBe(false)
+		expect(isVerificationCodeValid(number, verificationCode).valid).toBe(false)
 	})
 })
 
 describe('Name validation', () => {
 	it('returns true when name length is valid', () => {
-		expect(isNameValid('Mionel Lessi')).toBe(true)
+		expect(isNameValid('Mionel Lessi').valid).toBe(true)
 	})
 
 	it('returns false when name length is invalid', () => {
-		expect(isNameValid('')).toBe(false)
+		expect(isNameValid('').valid).toBe(false)
 
 		const longName = 'a'.repeat(51)
-		expect(isNameValid(longName)).toBe(false)
+		expect(isNameValid(longName).valid).toBe(false)
 	})
 })
 
 describe('Expiration date validation', () => {
 	it('returns true when expiration date is valid', () => {
-		expect(isExpirationDateValid('04/2029')).toBe(true)
+		expect(isExpirationDateValid('04/2029').valid).toBe(true)
 	})
 
 	it('returns false when expiration date is invalid', () => {
-		expect(isExpirationDateValid('04/29')).toBe(false)
-		expect(isExpirationDateValid('2/2029')).toBe(false)
-		expect(isExpirationDateValid('0429')).toBe(false)
-		expect(isExpirationDateValid('04-29')).toBe(false)
+		expect(isExpirationDateValid('04/29').valid).toBe(false)
+		expect(isExpirationDateValid('2/2029').valid).toBe(false)
+		expect(isExpirationDateValid('0429').valid).toBe(false)
+		expect(isExpirationDateValid('04-29').valid).toBe(false)
 	})
 })

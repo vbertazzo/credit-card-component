@@ -2,41 +2,37 @@
   <form class="space-y-4">
     <div class="flex flex-col">
       <label for="card-name">Nome do Titular</label>
-      <input
-        type="text"
-        id="card-name"
-        class="mt-2 border rounded"
+      <FormInput
+        name="card-name"
         v-model="name"
+        :error="nameStatus.message"
         @focus="handleFocus('front')"
       />
     </div>
     <div class="flex flex-col">
       <label for="card-number">Número do Cartão</label>
-      <input
-        type="text"
-        id="card-number"
-        class="mt-2 border rounded"
+      <FormInput
+        name="card-number"
         v-model="number"
+        :error="numberStatus.message"
         @focus="handleFocus('back')"
       />
     </div>
     <div class="flex flex-col">
       <label for="card-expiration-date">Data de Vencimento</label>
-      <input
-        type="text"
-        id="card-expiration-date"
-        class="mt-2 border rounded"
+      <FormInput
+        name="card-expiration-date"
         v-model="expirationDate"
+        :error="expirationDateStatus.message"
         @focus="handleFocus('back')"
       />
     </div>
     <div class="flex flex-col">
-      <label for="card-security-code">Código de Segurança</label>
-      <input
-        type="text"
-        id="card-security-code"
-        class="mt-2 border rounded"
+      <label for="card-verification-code">Código de Segurança</label>
+      <FormInput
+        name="card-verification-code"
         v-model="verificationCode"
+        :error="verificationCodeStatus.message"
         @focus="handleFocus('back')"
       />
     </div>
@@ -45,17 +41,25 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs, watch } from 'vue'
+import FormInput from './FormInput.vue'
 import { CreditCard } from './types'
-import { identifyBrand } from './validators'
+import {
+  identifyBrand,
+  isNameValid,
+  isCardValid,
+  isExpirationDateValid,
+  isVerificationCodeValid
+} from './validators'
 
 export default defineComponent({
   name: 'CardForm',
+  components: { FormInput },
   emits: ['update-card', 'flip-card'],
   setup (_, ctx) {
     const card = reactive<CreditCard>({
       number: '4012888888881881',
       name: 'Mionel Lessi',
-      expirationDate: '09/28',
+      expirationDate: '09/2028',
       verificationCode: '449',
       brand: ''
     })
@@ -68,6 +72,22 @@ export default defineComponent({
       return identifyBrand(card.number)
     })
 
+    const nameStatus = computed(() => {
+      return isNameValid(card.name)
+    })
+
+    const numberStatus = computed(() => {
+      return isCardValid(card.number)
+    })
+
+    const expirationDateStatus = computed(() => {
+      return isExpirationDateValid(card.expirationDate)
+    })
+
+    const verificationCodeStatus = computed(() => {
+      return isVerificationCodeValid(card.number, card.verificationCode)
+    })
+
     watch(
       () => [{ ...card }],
       () => {
@@ -78,7 +98,11 @@ export default defineComponent({
 
     return {
       ...toRefs(card),
-      handleFocus
+      handleFocus,
+      nameStatus,
+      numberStatus,
+      expirationDateStatus,
+      verificationCodeStatus
     }
   }
 })

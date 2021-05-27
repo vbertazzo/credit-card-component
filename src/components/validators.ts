@@ -1,8 +1,20 @@
-export function isCardValid(cardNumber: string): boolean {
+interface Status {
+	valid: boolean
+	message?: string
+}
+
+export function isCardValid(cardNumber: string): Status {
 	const sanitizedCardNumber = sanitizeNumber(cardNumber)
 	const NUMBER_SIZE = sanitizedCardNumber.length - 1
 	let shouldDouble = false
 	let sum = 0
+
+	if (sanitizedCardNumber.length < 13) {
+		return {
+			valid: false,
+			message: 'Número de cartão precise ter ao menos 13 dígitos.'
+		}
+	}
 
 	for (let i = NUMBER_SIZE; i >= 0; i--) {
 		let digit = Number(sanitizedCardNumber.charAt(i))
@@ -15,7 +27,14 @@ export function isCardValid(cardNumber: string): boolean {
 		shouldDouble = !shouldDouble
 	}
 
-	return sum % 10 === 0
+	if (!(sum % 10 === 0)) {
+		return {
+			valid: false,
+			message: 'Número de cartão inválido.'
+		}
+	}
+
+	return { valid: true }
 }
 
 export function sanitizeNumber(number: string): string {
@@ -47,7 +66,7 @@ export function identifyBrand(cardNumber: string): string | null {
 	return null
 }
 
-export function isVerificationCodeValid(cardNumber: string, code: string): boolean {
+export function isVerificationCodeValid(cardNumber: string, code: string): Status {
 	const brands: Record<string, RegExp> = {
 		visa: /^\d{3}$/,
 		mastercard: /^\d{3}$/,
@@ -62,15 +81,36 @@ export function isVerificationCodeValid(cardNumber: string, code: string): boole
 
 	const brand = identifyBrand(sanitizedCardNumber)
 
-	return brand ? brands[brand].test(sanitizedCode) : false
+	if (brand && !brands[brand].test(sanitizedCode)) {
+		return {
+			valid: false,
+			message: 'Por favor, verifique se a quantidade de digitos do código de verificação está correta.'
+		}
+	}
+
+	return { valid: true }
 }
 
-export function isNameValid(name: string): boolean {
+export function isNameValid(name: string): Status {
 	const MIN_LENGTH = 2
 	const MAX_LENGTH = 50
-	return name.length >= MIN_LENGTH && name.length <= MAX_LENGTH
+	const isBetweenMinMax = name.length >= MIN_LENGTH && name.length <= MAX_LENGTH
+	if (!isBetweenMinMax) {
+		return {
+			valid: false,
+			message: 'Por favor, o nome precisa ter entre 2 e 50 caracteres.'
+		}
+	}
+	return { valid: true }
 }
 
-export function isExpirationDateValid(date: string): boolean {
-	return /^(0[1-9]|1[0-2])\/([0-9]{4})$/.test(date)
+export function isExpirationDateValid(date: string): Status {
+	if (!/^(0[1-9]|1[0-2])\/([0-9]{4})$/.test(date)) {
+		return {
+			valid: false,
+			message: 'Data de vencimento inválida.'
+		}
+	}
+
+	return { valid: true }
 }

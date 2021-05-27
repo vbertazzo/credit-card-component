@@ -1,7 +1,7 @@
 <template>
   <div class="p-16 flex flex-col justify-center items-center">
     <h1 class="font-bold text-2xl mb-12">Cartão de Crédito</h1>
-    <section class="flex space-x-10">
+    <section class="flex space-x-32">
       <CardForm @update-card="handleFormUpdate" @flip-card="handleCardFlip" />
       <CardPreview
         :number="card.number"
