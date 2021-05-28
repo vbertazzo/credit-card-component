@@ -1,27 +1,45 @@
-# Vue 3 + Typescript + Vite
+<h1 align="center">
+    Form Cartão de Crédito
+</h1>
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+<h2 align="center">
+  Exemplo para representar visualmente um formulário de cartão de crédito 💻
+</h2>
 
-## Recommended IDE Setup
+<p align="center">
+<img src="https://res.cloudinary.com/voss/image/upload/v1622214692/readme_logos/card_sxzigf.gif" alt="Credit Card Component"/>
+</p>
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+Veja o resultado final em:
 
-### If Using `<script setup>`
+#### [Link](https://credit-card-form-vue.netlify.app/)
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+## 🎯 O que é?
 
-## Type Support For `.vue` Imports in TS
+É um simples componente em Vue para representar visualmente as informações de um formulário de cartão de crédito. O foco foi em criar uma representação de cartão com design moderno baseado no que é encontrado atualmente em sites de e-commerce.
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+A bandeira do cartão é alterada automaticamente de acordo com o número do mesmo. Há uma validação utilizando o algoritmo de Luhn para certificar que o número é válido e simples validações nos outros campos do formulário.
 
-### If Using Volar
+Há a possibilidade de escolher as cores do cartão tanto a nível de componente, quanto no site para ajudar na visualização.
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
+A implementação foi feita com a ajuda de testes unitários, que é um dos focos de meus estudos e que considero essencial em meus projetos futuros.
 
-### If Using Vetur
+## 🚀 Tecnologia, Ferramentas e Conceitos
 
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+Esse projeto utiliza:
+
+- [Vue.js](https://vuejs.org/)
+
+- [Tailwind CSS](https://tailwindcss.com/)
+
+- [Vite](https://vitejs.dev/)
+
+- [Jest](https://jestjs.io/)
+
+- [Typescript](https://www.typescriptlang.org/)
+
+- [VS Code](https://code.visualstudio.com/)
+
+## 📝 Licença
+
+Esse projeto usa a licença [MIT](https://github.com/vbertazzo/credit-card-component/blob/main/LICENSE).
