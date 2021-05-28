@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <label for="backgroundColor">Cor de fundo:</label>
     <input
-      class="mt-1"
+      class="mt-1 cursor-pointer"
       type="color"
       :value="backgroundColor"
       id="backgroundColor"
@@ -12,7 +12,7 @@
   <div class="flex flex-col mt-4">
     <label for="textColor">Cor da fonte:</label>
     <input
-      class="mt-1"
+      class="mt-1 cursor-pointer"
       type="color"
       :value="textColor"
       id="textColor"
