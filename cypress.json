@@ -1,4 +1,0 @@
-{
-  "componentFolder": "./cypress/component",
-  "testFiles": "**/*.cy-spec.ts"
-}

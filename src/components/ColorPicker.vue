@@ -37,10 +37,7 @@ export default defineComponent({
     }
   },
   setup (props, ctx) {
-    const handleColorChange = (
-      event: { target: HTMLInputElement },
-      target: 'background' | 'text'
-    ) => {
+    const handleColorChange = (event: any, target: 'background' | 'text') => {
       ctx.emit('change-color', { value: event.target.value, target })
     }
 

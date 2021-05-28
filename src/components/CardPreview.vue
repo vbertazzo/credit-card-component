@@ -3,7 +3,7 @@
     <div
       class="card w-full h-full relative border shadow rounded-xl transition-transform duration-1000"
       :class="{ 'is-flipped': !(face === 'front') }"
-      :style="{ 'border-color': textColor }"
+      :style="borderColor"
       data-test="card"
     >
       <div
@@ -124,6 +124,10 @@ export default defineComponent({
       return `stroke: ${props.textColor}`
     })
 
+    const borderColor = computed(() => {
+      return `border-color: ${props.textColor}`
+    })
+
     const formattedNumber = computed(() => {
       return props.number
         .replace(/\W/gi, '')
@@ -139,6 +143,7 @@ export default defineComponent({
       bgColor,
       txtColor,
       svgColor,
+      borderColor,
       formattedNumber,
       formattedDate
     }
