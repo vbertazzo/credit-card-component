@@ -42,7 +42,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs, watch } from 'vue'
 import FormInput from './FormInput.vue'
-import { CreditCard } from './types'
+import { CreditCard, CardFace } from './types'
 import {
   identifyBrand,
   isNameValid,
@@ -64,8 +64,8 @@ export default defineComponent({
       brand: ''
     })
 
-    const handleFocus = (side: 'front' | 'back') => {
-      ctx.emit('flip-card', side)
+    const handleFocus = (face: CardFace) => {
+      ctx.emit('flip-card', face)
     }
 
     const cardBrand = computed(() => {
